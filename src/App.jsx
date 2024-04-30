@@ -4,12 +4,12 @@ import useCurrencyinfo from "./hooks/useCurrencyinfo";
 import "./App.css";
 
 function App() {
-  const [amount, setAmount] = useState(0); // the from amount
-  const [from, setFrom] = useState("usd"); // from
-  const [to, setTo] = useState("inr"); // to
-  const [convertedAmount, setConvertedAmount] = useState(0); // the to amount
+  const [from, setFrom] = useState("usd"); // FROM CURRENCY
+  const [amount, setAmount] = useState(); // the from amount
+  const [to, setTo] = useState("inr"); // TO CURRENCY
+  const [convertedAmount, setConvertedAmount] = useState(); // the to amount
 
-  const currencyInfo = useCurrencyinfo(from);
+  const currencyInfo = useCurrencyinfo(from); // getting all the values from the the hook
   const options = Object.keys(currencyInfo);
   // the data we returned form currencyinfo is used here
   // options will have all the list of currency
@@ -47,9 +47,9 @@ function App() {
                 label="From"
                 amount={amount}
                 currencyOptions={options}
-                onCurrencyChange={(currency) => setAmount(amount)}
+                onCurrencyChange={(currency) => {return setFrom(currency)}}// does not return
                 selectCurrency={from}
-                onAmountChange={(amount) => setAmount(amount)}
+                onAmountChange={(amount) => amount>=0 && setAmount(amount)}// does not return
               />
             </div>
             <div className="relative w-full h-0.5">
@@ -66,7 +66,7 @@ function App() {
                 label="To"
                 amount={convertedAmount}
                 currencyOptions={options}
-                onCurrencyChange={(currency) => setTo(currency)}
+                onCurrencyChange={(currency) => setTo(currency)} //change the setTo currency to the new value
                 selectCurrency={to}
                 amountDisable
               />

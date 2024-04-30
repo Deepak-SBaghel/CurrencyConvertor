@@ -9,13 +9,13 @@ function useCurrencyinfo(currency) {
     )
       .then((res) => res.json())
       .then((res) => setdata(res[currency]));
-      console.log(data);
+    console.log(data);
   }, [currency]);
-  //   return [data, setdata];  
-return data;
-// we will extract data from the function 
+  //   return [data, setdata];
+  return data;
+  // we will extract data from the function
 }
 
 export default useCurrencyinfo;
-// here we are returning the whole function 
-// and we are taking the 
+// here we are returning the whole function
+// and we are taking the

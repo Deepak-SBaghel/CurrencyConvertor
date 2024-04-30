@@ -1,24 +1,20 @@
 import { useState } from "react";
 import { InputBox } from "./components";
-import useCurrencyinfo from "./hooks/useCurrencyinfo";
-import "./App.css";
+import useCurrencyInfo from "./hooks/useCurrencyInfo";
 
 function App() {
-  const [amount, setAmount] = useState(0); // the from amount
-  const [from, setFrom] = useState("usd"); // from
-  const [to, setTo] = useState("inr"); // to
-  const [convertedAmount, setConvertedAmount] = useState(0); // the to amount
+  const [amount, setAmount] = useState(0);
+  const [from, setFrom] = useState("usd");
+  const [to, setTo] = useState("inr");
+  const [convertedAmount, setConvertedAmount] = useState(0);
 
-  const currencyInfo = useCurrencyinfo(from);
+  const currencyInfo = useCurrencyInfo(from);
+
   const options = Object.keys(currencyInfo);
-  // the data we returned form currencyinfo is used here
-  // options will have all the list of currency
 
-  // swap button
   const swap = () => {
     setFrom(to);
     setTo(from);
-    
     setConvertedAmount(amount);
     setAmount(convertedAmount);
   };
@@ -31,7 +27,7 @@ function App() {
     <div
       className="w-full h-screen flex flex-wrap justify-center items-center bg-cover bg-no-repeat"
       style={{
-        backgroundImage: `url("https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")`,
+        backgroundImage: `url('https://images.pexels.com/photos/3532540/pexels-photo-3532540.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')`,
       }}
     >
       <div className="w-full">
@@ -67,7 +63,7 @@ function App() {
                 amount={convertedAmount}
                 currencyOptions={options}
                 onCurrencyChange={(currency) => setTo(currency)}
-                selectCurrency={to}
+                selectCurrency={from}
                 amountDisable
               />
             </div>
